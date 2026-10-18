@@ -1,0 +1,6 @@
+package util;
+import java.io.IOException;import java.nio.charset.StandardCharsets;import java.nio.file.*;import java.util.List;
+public final class TransactionLog {
+    private TransactionLog(){}
+    public static synchronized void append(Path file,String line)throws IOException{Path parent=file.toAbsolutePath().getParent();if(parent!=null)Files.createDirectories(parent);Files.write(file,List.of(line),StandardCharsets.UTF_8,StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
+}

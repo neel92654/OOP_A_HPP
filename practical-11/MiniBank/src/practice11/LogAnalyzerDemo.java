@@ -1,0 +1,5 @@
+package practice11;
+import java.nio.file.*;import java.nio.file.attribute.BasicFileAttributes;import java.io.IOException;import java.util.*;
+public class LogAnalyzerDemo {
+    public static void main(String[] args)throws IOException{Path dir=Path.of("data/log-analysis");Files.createDirectories(dir);Files.write(dir.resolve("app1.log"),List.of("INFO app started","ERROR disk full","INFO ready"));Files.write(dir.resolve("app2.log"),List.of("WARN retry","ERROR timeout"));String keyword=args.length==0?"ERROR":args[0];long lines=0,matches=0;try(DirectoryStream<Path> stream=Files.newDirectoryStream(dir,"*.log")){for(Path file:stream){long fileLines=0;for(String line:Files.readAllLines(file)){lines++;fileLines++;if(line.toLowerCase(Locale.ROOT).contains(keyword.toLowerCase(Locale.ROOT)))matches++;}BasicFileAttributes a=Files.readAttributes(file,BasicFileAttributes.class);System.out.println(file.getFileName()+": lines="+fileLines+", size="+a.size()+" bytes");}}System.out.println("Total lines: "+lines);System.out.println("Lines containing '"+keyword+"': "+matches);}
+}

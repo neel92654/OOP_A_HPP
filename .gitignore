@@ -1,0 +1,15 @@
+# macOS system files
+.DS_Store
+
+# Java compiled class files
+*.class
+
+# Build output directories
+out/
+target/
+
+# Runtime data directories
+**/data/
+
+# Allow runnable MiniBank.jar
+!MiniBank/MiniBank.jar

@@ -1,0 +1,5 @@
+out/
+target/
+data/accounts.dat
+data/report.txt
+data/logs/*.log
